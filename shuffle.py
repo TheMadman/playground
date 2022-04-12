@@ -1,13 +1,16 @@
 from typing import List, Tuple
 
-def shuffle(deck: List[int]) -> list:
+def split(deck: List[int]) -> Tuple[List[int], List[int]]:
     length: int = len(deck)
     odd: int = length & 1
     first_half: List[int] = deck[:length // 2 + odd]
     second_half: List[int] = deck[length // 2 + odd:]
-    halves: Tuple[List[int], List[int]] = first_half, second_half
+    return first_half, second_half
+
+def shuffle(deck: List[int]) -> List[int]:
+    halves: Tuple[List[int], List[int]] = split(deck)
     new_deck: List[int] = []
-    for i in range(length):
+    for i in range(len(deck)):
         new_deck.append(halves[i & 1][i // 2])
 
     return new_deck

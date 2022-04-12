@@ -14,7 +14,7 @@
 void *write_first_byte(void *param)
 {
 	int *fd = param;
-	char byte = 1;
+	char byte = '1';
 	lseek(*fd, 0, SEEK_SET);
 	(void)write(*fd, &byte, 1);
 	return 0;
@@ -23,7 +23,7 @@ void *write_first_byte(void *param)
 void *write_second_byte(void *param)
 {
 	int *fd = param;
-	char byte = 2;
+	char byte = '2';
 	lseek(*fd, 1, SEEK_SET);
 	(void)write(*fd, &byte, 1);
 	return 0;
@@ -55,11 +55,11 @@ int main()
 		char byte = 0;
 		lseek(fd, 0, SEEK_SET);
 		read(fd, &byte, 1);
-		if (byte != 1)
-			printf("first byte wasn't thread1 value: %d\n", byte);
+		if (byte != '1')
+			printf("first byte wasn't thread1 value: %c\n", byte);
 		read(fd, &byte, 1);
-		if (byte != 2)
-			printf("second byte wasn't thread2 value: %d\n", byte);
+		if (byte != '2')
+			printf("second byte wasn't thread2 value: %c\n", byte);
 	}
 }
 

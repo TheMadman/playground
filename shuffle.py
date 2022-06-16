@@ -1,15 +1,15 @@
 from typing import List, Tuple
 
 def split(deck: List[int]) -> Tuple[List[int], List[int]]:
-    length: int = len(deck)
-    odd: int = length & 1
-    first_half: List[int] = deck[:length // 2 + odd]
-    second_half: List[int] = deck[length // 2 + odd:]
+    length = len(deck)
+    odd = length & 1
+    first_half = deck[:length // 2 + odd]
+    second_half = deck[length // 2 + odd:]
     return first_half, second_half
 
 def shuffle(deck: List[int]) -> List[int]:
-    halves: Tuple[List[int], List[int]] = split(deck)
-    new_deck: List[int] = []
+    halves = split(deck)
+    new_deck = []
     for i in range(len(deck)):
         new_deck.append(halves[i & 1][i // 2])
 
@@ -20,9 +20,9 @@ def deck(size: int) -> List[int]:
 
 
 for i in range(2, 53):
-    mydeck: List[int] = deck(i)
-    newdeck: List[int] = shuffle(mydeck)
-    count: int = 1
+    mydeck = deck(i)
+    newdeck = shuffle(mydeck)
+    count = 1
     while newdeck != mydeck:
         newdeck = shuffle(newdeck)
         count += 1
